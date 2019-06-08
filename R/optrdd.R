@@ -351,6 +351,7 @@ optrdd = function(X,
                       (W.counts[realized.idx.1]) / 2 / sigma.sq,
                       lambda.mult / max.second.derivative^2 / 2,
                       rep(0, num.lambda - 1 + (1 + two.fun) * num.df))
+    print(ncol(Dmat))
     # The linear component of the objective is sum(dvec * params)
     dvec = c(rep(0, num.realized.0 + num.realized.1 + 1), 1, -1,
              rep(0, num.lambda - 3 + (1 + two.fun) * num.df))
