@@ -7,3 +7,5 @@ experiments_from_paper/*
 tests/testthat/test_all.R
 tests/testthat/test_numerics.R
 releases/*
+^.*\.Rproj$
+^\.Rproj\.user$

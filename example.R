@@ -7,7 +7,9 @@ X = sample(seq(-4, 4, by = 8/41.5), n, replace = TRUE)
 W = as.numeric(X >= threshold)
 Y = 0.4 * W + 1 / (1 + exp(2 * X)) + 0.2 * rnorm(n)
 # using 0.4 for max.second.derivative would have been enough
-out.1 = optrdd(X=X, Y=Y, W=W, max.second.derivative = 0.5, estimation.point = threshold)
+out.1 = optrdd(X=X, Y=Y, W=W,
+               max.second.derivative = 0.5, estimation.point = threshold,
+               verbose = FALSE)
 print(out.1); plot(out.1, xlim = c(-1.5, 1.5))
 
 # Now, treatment is instead allocated in a neighborhood of 0
