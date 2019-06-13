@@ -126,6 +126,7 @@ optrdd = function(X,
         } else {
             Y.hat = stats::predict(stats::lm(Y ~ X * W))
             sigma.sq = mean((Y - Y.hat)^2) * length(W) / (length(W) - 2 - 2 * nvar)
+            sigma.sq = 
             if (try.elnet.for.sigma.sq){
                 if(ncol(X) > 1) {
                     stop("Elastic net for sigma squared not implemented with more than 1 running variable.")
@@ -351,8 +352,7 @@ optrdd = function(X,
                       (W.counts[realized.idx.1]) / 2 / sigma.sq,
                       lambda.mult / max.second.derivative^2 / 2,
                       rep(0, num.lambda - 1 + (1 + two.fun) * num.df))
-    print(ncol(Dmat))
-    print("Paul")
+    
     # The linear component of the objective is sum(dvec * params)
     dvec = c(rep(0, num.realized.0 + num.realized.1 + 1), 1, -1,
              rep(0, num.lambda - 3 + (1 + two.fun) * num.df))
@@ -456,7 +456,7 @@ optrdd = function(X,
         t.hat = result[num.realized.0 + num.realized.1 + 1] / (2 * max.second.derivative^2)
       
     } else if (optimizer == "mosek") {
-        
+        print("Paul")
         # We need to rescale our optimization parameters, such that Dmat has only
         # ones and zeros on the diagonal; i.e.,
         A.natural = Amat %*% Matrix::Diagonal(ncol(Amat), x=1/sqrt(Dmat.diagonal + as.numeric(Dmat.diagonal == 0)))
